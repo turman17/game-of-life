@@ -1,6 +1,6 @@
 #include <iostream>
 #include "raylib.h"
-#include "grid.hpp"
+#include "Simulation.hpp"
 
 int main(void)
 {
@@ -12,13 +12,15 @@ int main(void)
 
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game of Life");
     SetTargetFPS(FPS);
-    Grid grid(WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE);
 
+    Simulation sim(WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE);
     while(WindowShouldClose() == false)
     {
+        sim.Update();
+
         BeginDrawing();
         ClearBackground(GREY);
-        grid.draw();
+        sim.Draw();
         EndDrawing();
     }
     CloseWindow();
